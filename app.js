@@ -1,7 +1,6 @@
 const wordListEasy = ["space","galaxy","planet","comet","asteroid","meteor","satellite","telescope","astronaut","black hole","supernova","nebula","constellation","orbit","gravity","eclipse","cosmos","universe","quasar","pulsar"];
-const wordListMedium = [""];
+const wordListMedium = ["universe","constellation","supernova","nebula","quasar","pulsar"];
 const wordListHard = [""];
-
 let secretWord = "";
 
 const wordBank = []

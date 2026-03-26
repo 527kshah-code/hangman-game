@@ -1,0 +1,21 @@
+/* KEYBOARD */
+
+.keyboard-row .key-col {
+    flex: 0 0 calc(100% / 7);
+    max-width: calc(100% / 7);
+}
+
+.key {
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    background: insert color;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+}
+
+.key:hover {
+    background: insert olor;
+}
