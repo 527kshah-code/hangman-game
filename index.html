@@ -1,65 +1,58 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Hangman Game</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
+  <head>
+    <title>Hangman Game</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous"
-        />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-
-    <body>
-        <main>
-            <h1 class="text-center mt-4">Hangman Game</h1>
-            <div class="container">
-                <div class = "card">
-                    <div class="row text-center g-3 ">
-                        <div class ="col-4">
-                            <a href="game.html">
-                                <button class="bg-success rounded p-1 m-1" id="easy" onclick="">Easy</button>
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a href="game.html">
-                                <button class="bg-warning rounded p-1 m-1" id="medium" onclick="" >Medium</button>
-                            </a>
-                        </div>
-                        <div class="col-4">
-                            <a href="game.html">
-                                <button class="bg-danger rounded p-1 m-1" id="hard" onclick="">Hard</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+  <body>
+    <main>
+      <h1 class="text-center mt-4">Hangman Game</h1>
+      <div class="container">
+        <div class="card">
+          <div class="row text-center g-3">
+            <div class="col-4">
+              <a href="game.html">
+                <button class="bg-success rounded p-1 m-1" id="easy-btn">Easy</button>
+              </a>
             </div>
+            <div class="col-4">
+              <a href="game.html">
+                <button class="bg-warning rounded p-1 m-1" id="medium-btn">Medium</button>
+              </a>
+            </div>
+            <div class="col-4">
+              <a href="game.html">
+                <button class="bg-danger rounded p-1 m-1" id="hard-btn">Hard</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 
-        </main>
-        <footer class="text-center mt-4">
-            • © Kavya Shah 2026 • 
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script
-            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"
-        ></script>
+    <footer class="text-center mt-4">
+      • © Kavya Shah 2026 •
+    </footer>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-            crossorigin="anonymous"
-        ></script>
-        <script src="app.js"></script>
-    </body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+  </body>
 </html>

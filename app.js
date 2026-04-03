@@ -1,122 +1,89 @@
-const wordListEasy = ["space","galaxy","planet","comet","asteroid","meteor","satellite","telescope","astronaut","black hole","supernova","nebula","constellation","orbit","gravity","eclipse","cosmos","universe","quasar","pulsar"];
-const wordListMedium = ["universe","constellation","supernova","nebula","quasar","pulsar"];
-const wordListHard = [""];
-let secretWord = "";
+const wordList = ["space","galaxy","planet","comet","asteroid","meteor","satellite","telescope",
+  "astronaut","blackhole","supernova","nebula","constellation","orbit","gravity","eclipse","cosmos",,"universe","quasar","pulsar","ArtemisII","Voyager1","Hubble","MarsRover","InternationalSpaceStation","Apollo11",];
 
-const wordBank = []
+let secretWord = "";
 let guessedLetters = [];
-let secretWord = "";
 let attempts = 6;
-document.addEventListener("DOMContentLoaded", function () {
-  // Any code inside this function will run
-  // as soon as the page is fully loaded
-  startGame();
+const hangmanImg = document.querySelector(".hangman-box img");
 
-  // Set up event listeners for the guess button and input
-  document.getElementById('guess-btn').addEventListener('click', handleGuess);
-  document.getElementById('letter-input').addEventListener('keypress', function (event) {
-    if (event.key === 'Enter') {
-      handleGuess();
-    }
-  });
-  document.getElementById('reset-btn').addEventListener('click', function() {
-    startGame();
-  });
-});
-// This is an example function structure
-// You will place your game setup logic inside it
-function startGame() {
-  // Default to easy difficulty
-  let randomIndex = Math.floor(Math.random() * wordBankEasy.length);
-  secretWord = wordListEasy[randomIndex].toUpperCase();
-  console.log(secretWord);
-  displayGame();
-
-  // Set up event listeners for difficulty buttons
-  document.getElementById('easy-btn').onclick = function () {
-    let randomIndex = Math.floor(Math.random() * wordListEasy.length);
-    secretWord = wordListEasy[randomIndex].toUpperCase();
-    console.log(secretWord);
-    resetGame();
-    displayGame();
-  };
-  document.getElementById('medium-btn').onclick = function () {
-    let randomIndex = Math.floor(Math.random() * wordListMedium.length);
-    secretWord = wordListMedium[randomIndex].toUpperCase();
-    console.log(secretWord);
-    resetGame();
-    displayGame();
-  };
-  document.getElementById('hard-btn').onclick = function () {
-    let randomIndex = Math.floor(Math.random() * wordListHard.length);
-    secretWord = wordListHard[randomIndex].toUpperCase();
-    console.log(secretWord);
-    resetGame();
-    displayGame();
-  };
+function getRandomWord() {
+  const index = Math.floor(Math.random() * wordList.length);
+  return wordList[index].toUpperCase();
 }
-  
 
-  // Example things your game might do here:
-  // • pick the random word
-
-
-
-  // • reset variables
-  // • build the starting display
-  // • update elements on the page
+function updateAttemptsDisplay() {
+  const attemptsEl = document.getElementById("attempts");
+  if (attemptsEl) {
+    attemptsEl.textContent = String(attempts);
+  }
+}
 
 function displayGame() {
-  let display = "";   // This variable will hold the string we build for the screen
+  let display = "";
 
-  // Loop through every letter in the secret word
-  // i starts at 0 because strings use zero-based indexing
-  // The loop will run once for each character in the word
   for (let i = 0; i < secretWord.length; i++) {
-
-    // Get the letter at the current position in the word
-    // charAt(i) returns the character located at index i
-    let letter = secretWord.charAt(i);
-
-    // Check if this letter exists in the guessedLetters array
-    // includes() returns true if the letter exists in the array
-    if (guessedLetters.includes(letter)) {
-
-      // If the letter has been guessed,
-      // add the letter to the display string
-      // A space is added so the letters appear spaced out
-      display += letter + " ";
-
-    } else {
-
-      // If the letter has NOT been guessed,
-      // add an underscore instead
-      display += "_ ";
-    }
-
+    const letter = secretWord.charAt(i);
+    display += guessedLetters.includes(letter) ? `${letter} ` : "_ ";
   }
 
-  // Update the word display on the page
-  document.getElementById('word-display').textContent = display;
+  const wordDisplay = document.getElementById("word-display");
+  if (wordDisplay) {
+    wordDisplay.textContent = display.trim();
+  }
 }
 
 function resetGame() {
   guessedLetters = [];
   attempts = 6;
-  document.getElementById('attempts').textContent = attempts;
-}
-
-function handleGuess() {
-  // Get the input value and convert to uppercase
-  let input = document.getElementById('letter-input').value.toUpperCase();
-
-  // Clear the input field for the next guess
-  document.getElementById('letter-input').value = '';
-
-
-  // Add the letter to the guessed letters array
-  guessedLetters.push(input);
-
-  // Update the display
+  updateAttemptsDisplay();
   displayGame();
 }
+
+function setDifficulty(level) {
+  attempts = level;
+  startGame();
+}
+
+function startGame() {
+  secretWord = getRandomWord();
+  guessedLetters = [];
+  updateAttemptsDisplay();
+  displayGame();
+
+  const easyBtn = document.getElementById("easy-btn");
+  const mediumBtn = document.getElementById("medium-btn");
+  const hardBtn = document.getElementById("hard-btn");
+
+  if (easyBtn) easyBtn.onclick = () => setDifficulty(6);
+  if (mediumBtn) mediumBtn.onclick = () => setDifficulty(5);
+  if (hardBtn) hardBtn.onclick = () => setDifficulty(4);
+}
+
+function guessLetter(letter) {
+  if (!letter || guessedLetters.includes(letter)) return;
+
+  guessedLetters.push(letter);
+
+  if (!secretWord.includes(letter)) {
+    attempts = Math.max(0, attempts - 1);
+    updateAttemptsDisplay();
+
+    if (hangmanImg) {
+      const step = 6 - attempts;
+      hangmanImg.src = `${step}.png`;
+    }
+  }
+
+  displayGame();
+}
+
+function pressLetter(letter) {
+  guessLetter(letter);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  startGame();
+
+  const resetBtn = document.getElementById("reset-btn");
+  if (resetBtn) resetBtn.addEventListener("click", () => startGame());
+});
