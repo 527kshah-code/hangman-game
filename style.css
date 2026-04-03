@@ -9,7 +9,7 @@
   height: 50px;
   border: none;
   border-radius: 20px;
-  background: #007bff;
+  background: #7069ce;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -17,5 +17,5 @@
 }
 
 .key:hover {
-  background: #0056b3;
+  background: #938cf0;
 }

@@ -1,8 +1,7 @@
 const wordList = ["space","galaxy","planet","comet","asteroid","meteor","satellite","telescope",
-  "astronaut","blackhole","supernova","nebula","constellation","orbit","gravity","eclipse","cosmos",,"universe","quasar","pulsar","ArtemisII","Voyager1","Hubble","MarsRover","InternationalSpaceStation","Apollo11",];
+  "astronaut","blackhole","supernova","nebula","constellation","orbit","gravity","eclipse","cosmos",
+  "universe","quasar","pulsar","ArtemisII","Voyager1","Hubble","MarsRover","InternationalSpaceStation","Apollo11",];
 
-let secretWord = "";
-let guessedLetters = [];
 let attempts = 6;
 const hangmanImg = document.querySelector(".hangman-box img");
 
@@ -11,24 +10,33 @@ function getRandomWord() {
   return wordList[index].toUpperCase();
 }
 
+let secretWord = getRandomWord();
+
 function updateAttemptsDisplay() {
   const attemptsEl = document.getElementById("attempts");
   if (attemptsEl) {
     attemptsEl.textContent = String(attempts);
   }
 }
+let wrongGuesses = [];
+let guessedLetters =[];
 
-function displayGame() {
+function displayWord() {
   let display = "";
 
   for (let i = 0; i < secretWord.length; i++) {
-    const letter = secretWord.charAt(i);
-    display += guessedLetters.includes(letter) ? `${letter} ` : "_ ";
+    const letter = secretWord[i];
+
+    if (guessedLetters.includes(letter)) {
+      display += letter + " ";
+    } else {
+      display += "_ ";
+    }
   }
 
-  const wordDisplay = document.getElementById("word-display");
-  if (wordDisplay) {
-    wordDisplay.textContent = display.trim();
+  const wordEl = document.getElementById("secretWord");
+  if (wordEl) {
+    wordEl.textContent = display.trim();
   }
 }
 
@@ -36,7 +44,7 @@ function resetGame() {
   guessedLetters = [];
   attempts = 6;
   updateAttemptsDisplay();
-  displayGame();
+  displayWord();
 }
 
 function setDifficulty(level) {
@@ -48,7 +56,7 @@ function startGame() {
   secretWord = getRandomWord();
   guessedLetters = [];
   updateAttemptsDisplay();
-  displayGame();
+  displayWord();
 
   const easyBtn = document.getElementById("easy-btn");
   const mediumBtn = document.getElementById("medium-btn");
@@ -59,27 +67,19 @@ function startGame() {
   if (hardBtn) hardBtn.onclick = () => setDifficulty(4);
 }
 
-function guessLetter(letter) {
-  if (!letter || guessedLetters.includes(letter)) return;
-
-  guessedLetters.push(letter);
-
-  if (!secretWord.includes(letter)) {
-    attempts = Math.max(0, attempts - 1);
-    updateAttemptsDisplay();
-
-    if (hangmanImg) {
-      const step = 6 - attempts;
-      hangmanImg.src = `${step}.png`;
-    }
+function pressLetter(letter) {
+  if (!guessedLetters.includes(letter)) {
+    guessedLetters.push(letter);
   }
 
-  displayGame();
+  if (!secretWord.includes(letter) && !wrongGuesses.includes(letter)) {
+    wrongGuesses.push(letter);
+    attempts--;
+    updateAttemptsDisplay();
+  }
+  displayWord();
 }
 
-function pressLetter(letter) {
-  guessLetter(letter);
-}
 
 document.addEventListener("DOMContentLoaded", () => {
   startGame();
@@ -87,3 +87,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.getElementById("reset-btn");
   if (resetBtn) resetBtn.addEventListener("click", () => startGame());
 });
+
