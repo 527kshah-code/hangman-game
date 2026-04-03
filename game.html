@@ -1,146 +1,151 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <title>Hangman Game</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <head>
+        <title>Hangman Game</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css" />
-</head>
+        <link rel="stylesheet" href="style.css" />
+    </head>
 
-<body>
-    <main>
-        <div class="card">
-            <div class="card-body text-center">
-                <!-- <img src="hangman.png" class="card-img-top col-md-6" alt="Hangman Image"> -->
-                <div class="row">
-                    <div class="container">Guessed letters wrong: <span id="wrong-letters"> </span></div>
+    <body>
+        <main>
+            <div class="container text-center">
+                <div class="row title mb-3">
+                    <h1>Hangman Game</h1>
                 </div>
                 <div class="row">
                     <a href="index.html">
-                        <button class="rounded col-12 col-md-6 col-lg-6 m-2">Restart</button>
+                        <button class="restart-btn rounded col-12 col-md-6 col-lg-6 m-2 mb-4">Restart</button>
                     </a>
                 </div>
-                <div class="hangman-box">
-                    <img src = "1.png" id="hangman-img" alt="Hangman Image" class="img-fluid">
+                <div class="row align-items-center">
+
+                <div class="col-md-6 text-center hangman-box">
+                    <img src="1.png" id="hangman-img" class="img-fluid">
                 </div>
 
-                <div class="word-box">
-                    <span id="secretWord"></span>
+                <div class="col-md-6 text-center letter-box">
+                    <h5>Wrong Letters:</h5>
+                    <span id="wrong-letters"></span>
                 </div>
 
-                <!-- KEYBOARD -->
-                <div class="keyboard">
-                    <div class="row g-2 mb-2 keyboard-row">
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('A')">A</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('B')">B</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('C')">C</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('D')">D</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('E')">E</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('F')">F</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('G')">G</button>
-                        </div>
-                    </div>
+            </div>
+            <div class="word-box">
+                <span id="secretWord"></span>
+            </div>
 
-                    <div class="row g-2 mb-2 keyboard-row">
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('H')">H</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('I')">I</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('J')">J</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('K')">K</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('L')">L</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('M')">M</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('N')">N</button>
-                        </div>
+            <!-- KEYBOARD -->
+            <div class="keyboard">
+                <div class="row g-2 mb-2 keyboard-row">
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('A')">A</button>
                     </div>
-
-                    <div class="row g-2 mb-2 keyboard-row">
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('O')">O</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('P')">P</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('Q')">Q</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('R')">R</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('S')">S</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('T')">T</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('U')">U</button>
-                        </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('B')">B</button>
                     </div>
-
-                    <div class="row g-2 keyboard-row justify-content-center">
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('V')">V</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('W')">W</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('X')">X</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('Y')">Y</button>
-                        </div>
-                        <div class="col key-col">
-                            <button class="key" onclick="pressLetter('Z')">Z</button>
-                        </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('C')">C</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('D')">D</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('E')">E</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('F')">F</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('G')">G</button>
                     </div>
                 </div>
-                <!--Thank you AJ :> for helping with the keyboard-->
 
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+                <div class="row g-2 mb-2 keyboard-row">
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('H')">H</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('I')">I</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('J')">J</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('K')">K</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('L')">L</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('M')">M</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('N')">N</button>
+                    </div>
+                </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-    <script src="app.js"></script>
-</body>
+                <div class="row g-2 mb-2 keyboard-row">
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('O')">O</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('P')">P</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('Q')">Q</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('R')">R</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('S')">S</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('T')">T</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('U')">U</button>
+                    </div>
+                </div>
+
+                <div class="row g-2 keyboard-row justify-content-center">
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('V')">V</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('W')">W</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('X')">X</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('Y')">Y</button>
+                    </div>
+                    <div class="col key-col">
+                        <button class="key" onclick="pressLetter('Z')">Z</button>
+                    </div>
+                </div>
+            </div>
+            <!--Thank you AJ :> for helping with the keyboard-->
+        </main>
+        <footer class="text-center mt-5">
+            • © Kavya Shah 2026 •
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"></script>
+        <script src="app.js"></script>
+    </body>
 
 </html>

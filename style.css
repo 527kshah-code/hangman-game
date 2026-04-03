@@ -1,3 +1,19 @@
+body {
+  margin: 20px 85px 50px 85px;
+}
+
+.restart-btn {
+  background: #7069ce;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  max-width: 30%;
+}
+.restart-btn:hover {
+  background: #938cf0;
+}
 /* KEYBOARD */
 
 .keyboard-row .key-col {
@@ -8,7 +24,7 @@
 .key {
   height: 50px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   background: #7069ce;
   color: white;
   font-weight: bold;
@@ -18,4 +34,32 @@
 
 .key:hover {
   background: #938cf0;
+}
+
+.hangman-box {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hangman-box img {
+  max-width: 800px;
+  width: 100%;
+  min-height: 300px;
+}
+.word-box {
+  text-align: center;
+  font-size: 3em;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+.letter-box {
+  text-align: center;
+  font-size: 1.5em;
+  border: 2px solid black;
+  min-height: 300px;
+  border-radius: 10px;
+}
+
+.letter-box h5 {
+  margin-top: 20px;
 }

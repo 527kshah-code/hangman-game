@@ -1,6 +1,6 @@
 const wordList = ["space","galaxy","planet","comet","asteroid","meteor","satellite","telescope",
   "astronaut","blackhole","supernova","nebula","constellation","orbit","gravity","eclipse","cosmos",
-  "universe","quasar","pulsar","ArtemisII","Voyager1","Hubble","MarsRover","InternationalSpaceStation","Apollo11",];
+  "universe","quasar","pulsar","ArtemisII","Voyager1","Hubble","MarsRover","InternationalSpaceStation","Apollo",];
 
 let attempts = 6;
 const hangmanImg = document.querySelector(".hangman-box img");
@@ -40,13 +40,6 @@ function displayWord() {
   }
 }
 
-function resetGame() {
-  guessedLetters = [];
-  attempts = 6;
-  updateAttemptsDisplay();
-  displayWord();
-}
-
 function setDifficulty(level) {
   attempts = level;
   startGame();
@@ -54,17 +47,29 @@ function setDifficulty(level) {
 
 function startGame() {
   secretWord = getRandomWord();
+
   guessedLetters = [];
+  wrongGuesses = [];
+
+  attempts = 6;
+
   updateAttemptsDisplay();
+
   displayWord();
 
-  const easyBtn = document.getElementById("easy-btn");
-  const mediumBtn = document.getElementById("medium-btn");
-  const hardBtn = document.getElementById("hard-btn");
+  document.getElementById("wrong-letters").textContent = "";
 
-  if (easyBtn) easyBtn.onclick = () => setDifficulty(6);
-  if (mediumBtn) mediumBtn.onclick = () => setDifficulty(5);
-  if (hardBtn) hardBtn.onclick = () => setDifficulty(4);
+   if (hangmanImg) {
+    hangmanImg.src = "1.png";
+  }
+}
+
+function decreaseAttempts() {
+  attempts--;
+  updateAttemptsDisplay();
+  if (hangmanImg) {
+    hangmanImg.src = `${7 - attempts}.png`;
+  }
 }
 
 function pressLetter(letter) {
@@ -74,11 +79,31 @@ function pressLetter(letter) {
 
   if (!secretWord.includes(letter) && !wrongGuesses.includes(letter)) {
     wrongGuesses.push(letter);
-    attempts--;
-    updateAttemptsDisplay();
+    decreaseAttempts();
+     document.getElementById("wrong-letters").textContent =
+      wrongGuesses.join(" ");
   }
   displayWord();
+
+  const winCondition = secretWord.split("").every(letter =>
+    guessedLetters.includes(letter)
+  );
+
+  const loseCondition = attempts <= 0;
+
+  if (winCondition) {
+    gameOver(true);
+  } else if (loseCondition) {
+    gameOver(false);
+  }
 }
+
+const gameOver = (winCondition) => {
+  setTimeout(() => {
+  alert(winCondition ? `You Win! You guessed the word ${secretWord}!` : `You Lose! The correct word was ${secretWord}.`);
+startGame();
+}, 300);
+};
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -87,4 +112,3 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetBtn = document.getElementById("reset-btn");
   if (resetBtn) resetBtn.addEventListener("click", () => startGame());
 });
-
