@@ -1,6 +1,7 @@
 const wordList = ["space","galaxy","planet","comet","asteroid","meteor","satellite","telescope",
   "astronaut","blackhole","supernova","nebula","constellation","orbit","gravity","eclipse","cosmos",
-  "universe","quasar","pulsar","ArtemisII","Voyager1","Hubble","MarsRover","InternationalSpaceStation","Apollo",];
+  "universe","quasar","pulsar","ArtemisII","Voyager","Hubble","MarsRover","InternationalSpaceStation",
+  "Apollo","Cosmonaut","Extraterrestrial","Interstellar","LightYear","Rocket","SolarSystem","SpaceShuttle"];
 
 let attempts = 6;
 const hangmanImg = document.querySelector(".hangman-box img");
