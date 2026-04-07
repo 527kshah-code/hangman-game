@@ -97,18 +97,24 @@ function pressLetter(letter) {
     gameOver(false);
   }
 }
-
+/*Ai helped with the popup for the game over message*/
 const gameOver = (winCondition) => {
-  setTimeout(() => {
-  alert(winCondition ? `You Win! You guessed the word ${secretWord}!` : `You Lose! The correct word was ${secretWord}.`);
-startGame();
-}, 300);
+  const popup = document.getElementById("game-popup");
+  const message = document.getElementById("popup-message");
+  if (winCondition) {
+    message.textContent = "Yay!😸 You Win! Your word was " + secretWord +".";
+  } else {
+    message.textContent = "Oh no!😿 You Lose! Your word was " + secretWord + ".";
+  }
+  popup.classList.remove("hidden");
 };
 
 
 document.addEventListener("DOMContentLoaded", () => {
   startGame();
 
-  const resetBtn = document.getElementById("reset-btn");
-  if (resetBtn) resetBtn.addEventListener("click", () => startGame());
+  document.getElementById("play-again").addEventListener("click", () => {
+    document.getElementById("game-popup").classList.add("hidden");
+    startGame();
+  });
 });
