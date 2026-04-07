@@ -1,5 +1,7 @@
 body {
   margin: 20px 85px 50px 85px;
+  background: radial-gradient(circle at top, #1a1440, #0f0c21);
+  color: whitesmoke;
 }
 
 .restart-btn {
@@ -30,6 +32,7 @@ body {
   font-weight: bold;
   cursor: pointer;
   width: 100%;
+  box-shadow: 0 0 8px rgba(112, 105, 206, 0.5);
 }
 
 .key:hover {
@@ -51,15 +54,68 @@ body {
   font-size: 3em;
   letter-spacing: 2px;
   margin-bottom: 20px;
+  color: #00e5ff;
 }
 .letter-box {
   text-align: center;
   font-size: 1.5em;
-  border: 2px solid black;
+  border: 2px solid #ffd166;
   min-height: 300px;
   border-radius: 10px;
+  box-shadow: 0 0 15px rgba(112, 105, 206, 0.4);
 }
 
 .letter-box h5 {
   margin-top: 20px;
+}
+
+#hangman-img {
+  filter: drop-shadow(3px 3px 10px rgb(254, 254, 254)) !important;
+  transition: transform 0.2s ease;
+}
+.easy {
+  background-color: #00e5ff;
+}
+
+.medium {
+  background-color: #8252fc;
+  color:whitesmoke;
+}
+
+.hard {
+  background-color: #ff4d6d;
+}
+
+.easy-btn {
+  box-shadow: 0 0 10px rgba(34, 200, 255, 0.6);
+}
+
+.medium-btn {
+  box-shadow: 0 0 10px rgba(178, 53, 255, 0.6);
+}
+
+.hard-btn {
+  box-shadow: 0 0 10px rgba(255, 99, 99, 0.6);
+}
+
+.card {
+  background: #2d236b;
+}
+
+h1 {
+  font-family: "sofachrome", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h5 {
+  font-family: "nasalization", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h3 {
+  font-family: "nasalization", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
